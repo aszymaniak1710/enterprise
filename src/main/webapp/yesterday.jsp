@@ -1,4 +1,3 @@
-
 <%@taglib uri="jakarta.tags.core" prefix="c"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
@@ -35,7 +34,7 @@ Something wrong, now I long for yesterday.<br/>
   Released: <c:out value="${releaseDate}" />
 </p>
 <c:if test="${!empty members}">
-  <table border>
+  <table <c:if test="${showBorder == 'true'}">border</c:if>>
     <tr><th>The Beatles</th></tr>
     <c:forEach var="member" items="${members}">
       <tr><td>${member}</td></tr>

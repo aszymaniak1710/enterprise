@@ -29,6 +29,8 @@ public class ControllerServlet extends HttpServlet {
         myBean.setBackgroundColor( request.getParameter("backColor") );
         request.setAttribute("bean", myBean);
 
+        request.setAttribute("showBorder", request.getParameter("showBorder"));
+
         ServletContext ctx = this.getServletContext();
         RequestDispatcher dispatcher =
                 ctx.getRequestDispatcher("/yesterday.jsp");
