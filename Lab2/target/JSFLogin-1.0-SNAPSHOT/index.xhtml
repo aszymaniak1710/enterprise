@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<f:view>
+    <h:head>
+        <title> Login page</title>
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <h:panelGrid columns="3">
+                <h:outputLabel for="usernameField" value="#{AppMessages['label.user']}"> </h:outputLabel>
+                <h:inputText id="usernameField"
+                             required="true"
+                             value="#{loginBean.username}"
+                             requiredMessage="#{AppMessages['title.login']} "> </h:inputText>
+                <h:message for="usernameField"></h:message>
+
+                <h:outputLabel for="passwordField" value="#{AppMessages['label.password']} "></h:outputLabel>
+                <h:inputSecret id="passwordField"
+                               value="#{loginBean.password}"
+                               redisplay="true"
+                               validatorMessage="#{AppMessages['validation.password']} ">
+                    <f:validateLength minimum="4" maximum="6"></f:validateLength>
+                </h:inputSecret>
+                <h:message for="passwordField"></h:message>
+                <h:panelGroup>
+                    <h:commandButton id="loginButton" value="#{AppMessages['label.login']} "
+                                     binding="#{loginBean.loginButton}"
+                                     action="#{loginBean.login()}"
+                                     disabled="true">
+                    </h:commandButton>
+                </h:panelGroup>
+            </h:panelGrid>
+
+            <h:selectBooleanCheckbox id="acceptCheckBox"
+                                     binding="#{loginBean.acceptCheckbox}"
+                                     valueChangeListener="#{loginBean.activateButton}">
+                <f:ajax event="click" execute="@this" render="loginButton" />
+            </h:selectBooleanCheckbox>
+            <h:outputText value="I accept the terms of service"></h:outputText>
+        </h:form>
+
+    </h:body>
+</f:view>
+</html>

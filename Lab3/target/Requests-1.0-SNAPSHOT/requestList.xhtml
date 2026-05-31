@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<h:head>
+    <title>Facelet Title</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputText value="Enter new request"></h:outputText>
+        <h:inputText id="inputNewRequest"
+                     value="#{requestsList.newRequest}"></h:inputText>
+        <h:commandButton value="Add"
+                         action="#{requestsList.addRequest}">
+        </h:commandButton>
+        <h:message for="inputNewRequest"></h:message>
+        <h:dataTable value="#{requestsList.allRequests}"
+                     var="item" border="1"
+                     binding="#{requestsList.requestsDataTable}">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Id"/>
+                </f:facet>
+                <h:outputText value="#{item.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="RequestDate"/>
+                </f:facet>
+                <h:outputText value="#{item.requestData}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="RequestText"/>
+                </f:facet>
+                <h:outputText value="#{item.requestText}"/>
+            </h:column>
+            <h:column>
+                <h:commandButton value="Remove"
+                                 action="#{requestsList.deleteRequest()}"
+                                 immediate="true">
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
